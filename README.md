@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# todo-lab
 
-## Getting Started
+A hands-on lab for working with Claude Code. Attendees build on a Next.js to-do app taken from the [To-do List Web App Design](https://www.figma.com/design/ANFRy5rLw4kwNQEigIA4sm/To-do-List-Web-App-Design--Community-?node-id=16-35) Figma file, and compare an **A** setup with a **B** setup in each part to see what changes the result.
 
-First, run the development server:
+![The base app next to the Figma frame](base-proof/side-by-side.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## What's here
+
+| Path | What it is |
+|---|---|
+| `base/` | The starting app every lab part copies: the Figma Dashboard screen in Next.js |
+| `base-proof/` | Screenshots that prove the base app matches the design and works |
+| `DECISIONS.md` | Why the lab is built the way it is |
+
+The seven A/B part folders (Prompt, CLAUDE.md, Skill, MCP, Artifact, Parallel, Proof) are in progress.
+
+## Run the base app
+
+Needs Node 20 or newer and pnpm.
+
+```sh
+cd base
+pnpm install
+pnpm dev        # http://localhost:3000
+pnpm test       # unit tests for src/lib/tasks.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tasks are saved in the browser's localStorage. To start over, run `localStorage.removeItem("todo-lab.tasks")` in the browser console and reload.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Next.js 16.4.3 (App Router), React 19, Tailwind CSS 4.3.3, Vitest, pnpm. Versions are pinned.
 
-## Learn More
+## Credits
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+UI design from the Figma community file linked above. Photos and icons in `base/public/` come from that file.
