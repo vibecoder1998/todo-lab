@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-montserrat);
+  --color-brand: #ff6767;
+  --color-accent: #f24e1e;
+  --color-muted: #a1a3ab;
+  --color-subtle: #747474;
+  --color-page: #f5f8ff;
+}
+
+@layer base {
+  body {
+    line-height: normal;
+  }
+}

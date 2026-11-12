@@ -1,0 +1,1 @@
+Add a /stats page: a bar chart of tasks completed per day for the last 7 days, a count of tasks by priority, and an empty state when there are no tasks. Reuse the sidebar and header, read data only through src/lib/tasks.ts, and add no new dependencies.

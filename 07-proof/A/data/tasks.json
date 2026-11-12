@@ -1,0 +1,49 @@
+[
+  {
+    "id": "1",
+    "title": "Attend Nischal\u2019s Birthday Party",
+    "description": "Buy gifts on the way and pick up cake from the bakery. (6 PM | Fresh Elements)",
+    "image": "/images/tasks/birthday-party.jpg",
+    "priority": "Moderate",
+    "status": "Not Started",
+    "createdAt": "2026-11-12T12:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "title": "Landing Page Design for TravelDays",
+    "description": "Get the work done by EOD and discuss with client before leaving. (4 PM | Meeting Room)",
+    "image": "/images/tasks/landing-page.jpg",
+    "priority": "Moderate",
+    "status": "In Progress",
+    "createdAt": "2026-11-12T12:00:00.000Z"
+  },
+  {
+    "id": "3",
+    "title": "Presentation on Final Product",
+    "description": "Make sure everything is functioning and all the necessities are properly met. Prepare the team and get the documents ready for the presentation.",
+    "image": "/images/tasks/meeting.jpg",
+    "priority": "Moderate",
+    "status": "In Progress",
+    "createdAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "4",
+    "title": "Walk the dog",
+    "description": "Take the dog to the park and bring treats as well.",
+    "image": "/images/tasks/walk-the-dog.jpg",
+    "priority": "Moderate",
+    "status": "Completed",
+    "createdAt": "2026-11-09T12:00:00.000Z",
+    "completedAt": "2026-11-10T12:00:00.000Z"
+  },
+  {
+    "id": "5",
+    "title": "Conduct meeting",
+    "description": "Meet with the client and finalize requirements.",
+    "image": "/images/tasks/meeting.jpg",
+    "priority": "Moderate",
+    "status": "Completed",
+    "createdAt": "2026-11-09T12:00:00.000Z",
+    "completedAt": "2026-11-10T12:00:00.000Z"
+  }
+]

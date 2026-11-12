@@ -1,0 +1,1 @@
+Before you say the dashboard is done: run pnpm dev, open http://localhost:3000 in the browser, and use it like a user. Search for a task by typing part of its title, click a task's circle to change its status, and add a task. Take a screenshot after each step. Report pass, fail or not verified for each feature, with the screenshot that proves it.

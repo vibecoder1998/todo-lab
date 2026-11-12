@@ -1,0 +1,1 @@
+Add a stats page.

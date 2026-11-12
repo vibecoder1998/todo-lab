@@ -1,0 +1,1 @@
+Add three features in parallel: delete a task from its ··· menu, a filter by priority, and a dark mode toggle. Give each feature to its own subagent working in its own git worktree, then merge the three branches, fix any conflicts, and run pnpm test and pnpm build.

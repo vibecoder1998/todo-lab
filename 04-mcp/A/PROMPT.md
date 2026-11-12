@@ -1,0 +1,1 @@
+Build the Vital Task page at /vital from this Figma frame: https://www.figma.com/design/ANFRy5rLw4kwNQEigIA4sm/To-do-List-Web-App-Design--Community-?node-id=351-284 . Reuse the existing sidebar and header.
