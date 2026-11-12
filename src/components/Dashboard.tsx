@@ -30,7 +30,7 @@ export default function Dashboard() {
   const advance = (task: Task) => setTasks(setStatus(task.id, NEXT_STATUS[task.status]));
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex h-dvh flex-col overflow-hidden">
       <header className="flex h-[100px] shrink-0 items-start bg-[#f8f8f8] pt-[38px] pr-[76px] pl-[72px] shadow-[0_4px_12px_rgba(0,0,0,0.07)]">
         <h1 className="-mt-[1px] w-[319px] text-[32px] font-semibold">
           <span className="text-brand">Dash</span>board
@@ -55,15 +55,15 @@ export default function Dashboard() {
         </p>
       </header>
 
-      <div className="flex flex-1">
+      <div className="flex min-h-0 flex-1">
         <Sidebar />
-        <main className="flex-1 px-[76px] pt-[57px] pb-[31px]">
+        <main className="flex min-h-0 flex-1 flex-col px-[76px] pt-[57px] pb-[31px]">
           <h2 className="flex items-center gap-[8px] text-[36px] leading-[34px] font-medium">
             Welcome back, Sundar
             <Image src="/icons/hand-wave.svg" alt="" width={42.4228} height={41} />
           </h2>
 
-          <div className="mt-[34px] flex h-[761px] gap-[16px] border border-muted/60 pt-[21px] pr-[26px] pb-[19px] pl-[25px] shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
+          <div className="mt-[34px] flex max-h-[761px] min-h-0 flex-1 gap-[16px] border border-muted/60 pt-[21px] pr-[26px] pb-[19px] pl-[25px] shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
             <section aria-labelledby="todo-title" className={`${CARD} flex w-[466px] flex-col`}>
               <div className="flex items-start justify-between pt-[20px] pr-[41px] pl-[23px]">
                 <div>

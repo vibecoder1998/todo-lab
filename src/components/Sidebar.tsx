@@ -13,7 +13,7 @@ const ITEM = "flex h-[59px] items-center gap-[16px] rounded-[14px] px-[16px] tex
 
 export default function Sidebar() {
   return (
-    <aside className="mt-[56px] flex w-[330px] shrink-0 flex-col rounded-r-[8px] bg-brand px-[21px] text-white shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
+    <aside className="mt-[56px] flex min-h-0 w-[330px] shrink-0 flex-col rounded-r-[8px] bg-brand px-[21px] text-white shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
       <div className="-mt-[44px] mr-[26px] flex flex-col items-center">
         <Image src="/images/profile.png" alt="" width={86} height={86} className="rounded-full" priority />
         <p className="mt-[13px] text-[16px] font-semibold">Sundar Gurung</p>
