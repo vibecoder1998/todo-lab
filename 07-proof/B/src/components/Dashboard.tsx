@@ -13,7 +13,7 @@ const CARD =
   "rounded-[14px] bg-page shadow-[0_19px_19px_rgba(0,0,0,0.03),0_5px_11px_rgba(0,0,0,0.04)]";
 
 function matches(task: Task, query: string) {
-  return `${task.title}\n${task.description}`.toLowerCase().includes(query.trim());
+  return `${task.title}\n${task.description}`.toLowerCase().includes(query.trim().toLowerCase());
 }
 
 const day = (iso: string) => new Date(iso).toDateString();
@@ -53,6 +53,7 @@ export default function Dashboard() {
           <span className="block text-[15px]">{now.toLocaleDateString("en-GB", { weekday: "long" })}</span>
           <span className="block text-[14px] text-[#3abeff]">{now.toLocaleDateString("en-GB")}</span>
         </p>
+        <div aria-hidden className="absolute inset-x-0 top-0 h-[180px] bg-gradient-to-b from-brand/[0.04] to-transparent" />
       </header>
 
       <div className="flex min-h-0 flex-1">

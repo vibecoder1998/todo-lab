@@ -92,8 +92,10 @@ PROMPTS = {
 }
 
 PLANTED_BUG = (
-    "return `${task.title}\\n${task.description}`.toLowerCase().includes(query.trim().toLowerCase());",
-    "return `${task.title}\\n${task.description}`.toLowerCase().includes(query.trim());",
+    "        </p>\n      </header>",
+    "        </p>\n"
+    '        <div aria-hidden className="absolute inset-x-0 top-0 h-[180px] bg-gradient-to-b from-brand/[0.04] to-transparent" />\n'
+    "      </header>",
 )
 
 
