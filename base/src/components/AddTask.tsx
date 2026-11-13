@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef, type FormEvent } from "react";
 import type { NewTask, Priority } from "@/lib/tasks";
 
-const FIELD = "mt-1 w-full rounded-[8px] border border-muted px-3 py-2 text-[14px] text-black";
+const FIELD = "mt-1 w-full rounded-[8px] border border-muted px-3 py-2 text-[14px] text-ink";
 
 export default function AddTask({ onAdd }: { onAdd: (task: NewTask) => void }) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -32,7 +32,7 @@ export default function AddTask({ onAdd }: { onAdd: (task: NewTask) => void }) {
       <dialog
         ref={dialog}
         aria-labelledby="add-task-title"
-        className="m-auto w-[420px] rounded-[14px] bg-white p-6 backdrop:bg-black/40"
+        className="m-auto w-[420px] rounded-[14px] bg-surface p-6 backdrop:bg-black/40"
       >
         <form method="dialog" onSubmit={submit} className="flex flex-col gap-4 text-[14px] font-medium">
           <h2 id="add-task-title" className="text-[16px] font-semibold">

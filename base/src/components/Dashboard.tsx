@@ -7,10 +7,11 @@ import AddTask from "./AddTask";
 import Sidebar from "./Sidebar";
 import StatusDonut from "./StatusDonut";
 import TaskCard, { STATUS_COLOR } from "./TaskCard";
+import ThemeToggle from "./ThemeToggle";
 
 const DONUTS: Status[] = ["Completed", "In Progress", "Not Started"];
 const CARD =
-  "rounded-[14px] bg-page shadow-[0_19px_19px_rgba(0,0,0,0.03),0_5px_11px_rgba(0,0,0,0.04)]";
+  "rounded-[14px] bg-card shadow-[0_19px_19px_rgba(0,0,0,0.03),0_5px_11px_rgba(0,0,0,0.04)]";
 
 function matches(task: Task, query: string) {
   return `${task.title}\n${task.description}`.toLowerCase().includes(query.trim().toLowerCase());
@@ -31,7 +32,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex h-dvh flex-col overflow-hidden">
-      <header className="flex h-[100px] shrink-0 items-start bg-[#f8f8f8] pt-[38px] pr-[76px] pl-[72px] shadow-[0_4px_12px_rgba(0,0,0,0.07)]">
+      <header className="flex h-[100px] shrink-0 items-start bg-header pt-[38px] pr-[76px] pl-[72px] shadow-[0_4px_12px_rgba(0,0,0,0.07)]">
         <h1 className="-mt-[1px] w-[319px] text-[32px] font-semibold">
           <span className="text-brand">Dash</span>board
         </h1>
@@ -49,7 +50,8 @@ export default function Dashboard() {
           />
           <Image src="/icons/search.svg" alt="" width={36} height={36} className="absolute right-0" />
         </div>
-        <p className="ml-auto w-[81px] font-medium">
+        <ThemeToggle className="mr-[24px] ml-auto" />
+        <p className="w-[81px] font-medium">
           <span className="block text-[15px]">{now.toLocaleDateString("en-GB", { weekday: "long" })}</span>
           <span className="block text-[14px] text-[#3abeff]">{now.toLocaleDateString("en-GB")}</span>
         </p>

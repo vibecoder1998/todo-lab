@@ -5,13 +5,13 @@ export default function StatusDonut({ label, percent, color }: Props) {
     <figure className="flex w-[100px] flex-col items-center">
       <div className="relative size-[100px]">
         <svg viewBox="0 0 100 100" className="size-full -scale-x-100" aria-hidden>
-          <circle cx="50" cy="50" r="44.5" fill="none" stroke="#d9d9d9" strokeWidth="11" />
+          <circle cx="50" cy="50" r="44.5" fill="none" className="stroke-track" strokeWidth="11" />
           <circle
             cx="50"
             cy="50"
             r="44.5"
             fill="none"
-            stroke={color}
+            style={{ stroke: color }}
             strokeWidth="11"
             pathLength={100}
             strokeDasharray={`${percent} 100`}

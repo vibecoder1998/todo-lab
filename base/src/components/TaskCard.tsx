@@ -2,15 +2,15 @@ import Image from "next/image";
 import { NEXT_STATUS, type Priority, type Status, type Task } from "@/lib/tasks";
 
 export const STATUS_COLOR: Record<Status, string> = {
-  "Not Started": "#f21e1e",
-  "In Progress": "#0225ff",
-  Completed: "#05a301",
+  "Not Started": "var(--tone-red)",
+  "In Progress": "var(--tone-blue)",
+  Completed: "var(--tone-green)",
 };
 
 const PRIORITY_COLOR: Record<Priority, string> = {
-  Extreme: "#f21e1e",
-  Moderate: "#42ade2",
-  Low: "#05a301",
+  Extreme: "var(--tone-red)",
+  Moderate: "var(--tone-sky)",
+  Low: "var(--tone-green)",
 };
 
 const date = new Intl.DateTimeFormat("en-GB");
