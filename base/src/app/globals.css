@@ -1,13 +1,48 @@
 @import "tailwindcss";
 
+/* Light values are the original design literals. Dark values keep text at WCAG AA (4.5:1) on --card. */
+:root {
+  color-scheme: light;
+  --page: #f5f8ff;
+  --card: #f5f8ff;
+  --surface: #ffffff;
+  --header: #f8f8f8;
+  --ink: #000000;
+  --subtle: #747474;
+  --track: #d9d9d9;
+  --tone-red: #f21e1e;
+  --tone-blue: #0225ff;
+  --tone-green: #05a301;
+  --tone-sky: #42ade2;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #121418;
+  --card: #1c1f26;
+  --surface: #23262e;
+  --header: #1a1d23;
+  --ink: #e9ebf0;
+  --subtle: #a4a8b1;
+  --track: #3b3f48;
+  --tone-red: #ff6b6b;
+  --tone-blue: #8c9bff;
+  --tone-green: #3fd33b;
+}
+
 @theme inline {
   --font-sans: var(--font-inter);
   --font-display: var(--font-montserrat);
   --color-brand: #ff6767;
   --color-accent: #f24e1e;
   --color-muted: #a1a3ab;
-  --color-subtle: #747474;
-  --color-page: #f5f8ff;
+  --color-subtle: var(--subtle);
+  --color-page: var(--page);
+  --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-header: var(--header);
+  --color-ink: var(--ink);
+  --color-track: var(--track);
 }
 
 @layer base {

@@ -10,7 +10,7 @@ import TaskCard, { STATUS_COLOR } from "./TaskCard";
 
 const DONUTS: Status[] = ["Completed", "In Progress", "Not Started"];
 const CARD =
-  "rounded-[14px] bg-page shadow-[0_19px_19px_rgba(0,0,0,0.03),0_5px_11px_rgba(0,0,0,0.04)]";
+  "rounded-[14px] bg-card shadow-[0_19px_19px_rgba(0,0,0,0.03),0_5px_11px_rgba(0,0,0,0.04)]";
 
 function matches(task: Task, query: string) {
   return `${task.title}\n${task.description}`.toLowerCase().includes(query.trim().toLowerCase());
@@ -31,7 +31,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex h-dvh flex-col overflow-hidden">
-      <header className="flex h-[100px] shrink-0 items-start bg-[#f8f8f8] pt-[38px] pr-[76px] pl-[72px] shadow-[0_4px_12px_rgba(0,0,0,0.07)]">
+      <header className="flex h-[100px] shrink-0 items-start bg-header pt-[38px] pr-[76px] pl-[72px] shadow-[0_4px_12px_rgba(0,0,0,0.07)]">
         <h1 className="-mt-[1px] w-[319px] text-[32px] font-semibold">
           <span className="text-brand">Dash</span>board
         </h1>

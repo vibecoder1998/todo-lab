@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
+import { themeScript } from "@/lib/theme";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -12,8 +13,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable} antialiased`}>
-      <body className="bg-page font-sans text-black">{children}</body>
+    // themeScript sets data-theme before React hydrates, so the attribute differs from the server render.
+    <html lang="en" className={`${inter.variable} ${montserrat.variable} antialiased`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="bg-page font-sans text-ink">{children}</body>
     </html>
   );
 }
