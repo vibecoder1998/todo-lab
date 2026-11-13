@@ -22,3 +22,8 @@ coverage/
 # Playwright output from proof runs
 test-results/
 playwright-report/
+
+# responsive-proof run output
+responsive-proof/shots*/
+responsive-proof/results*.json
+responsive-proof/report.html
