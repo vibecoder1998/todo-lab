@@ -1,5 +1,3 @@
-// Dark mode end-to-end check. Drives headless Chrome over the DevTools Protocol with no dependencies.
-// Usage: node e2e/theme.e2e.mjs  (env: BASE_URL, CHROME, OUT_DIR)
 import { spawn } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -11,8 +9,9 @@ const OUT_DIR = process.env.OUT_DIR ?? join(import.meta.dirname, "results");
 const VIEWPORT = { width: 1440, height: 1000 };
 const ORIGIN = new URL(BASE_URL).origin;
 const THEME_KEY = "todo-lab.theme";
-const LIGHT_PAGE = [245, 248, 255]; // #f5f8ff, the page colour of the original light design
+const LIGHT_PAGE = [245, 248, 255];
 const AA = 4.5;
+const ADD_DIALOG = `dialog[aria-labelledby="add-task-title"]`;
 
 const luminance = (rgb) => {
   const [r, g, b] = rgb.map((v) => {
@@ -25,8 +24,7 @@ const contrast = (a, b) => {
   const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
   return (hi + 0.05) / (lo + 0.05);
 };
-// Below this luminance white text out-contrasts black text, which is what "dark" means here.
-const isDark = (rgb) => luminance(rgb) < 0.179;
+const isDark = (rgb) => contrast(rgb, [255, 255, 255]) > contrast(rgb, [0, 0, 0]);
 const hex = (rgb) => "#" + rgb.map((v) => Math.round(v).toString(16).padStart(2, "0")).join("");
 
 function assert(ok, message) {
@@ -157,7 +155,6 @@ async function openPage(browser, { prefersDark, stored, beforeLoad }) {
     theme: () => page.evaluate("document.documentElement.dataset.theme ?? null"),
     pressed: () => page.evaluate(`document.querySelector('button[aria-label="Dark mode"]').getAttribute("aria-pressed")`),
     bodyBackground: async () => (await page.colors("body")).bg,
-    // Text colour and the colour actually behind it, compositing translucent ancestors over white.
     async colors(selector) {
       return page.evaluate(`(() => {
         const el = document.querySelector(${JSON.stringify(selector)});
@@ -200,7 +197,6 @@ async function openPage(browser, { prefersDark, stored, beforeLoad }) {
   return page;
 }
 
-// Elements whose text must stay readable. Status and priority values are matched by their label so every value on screen is checked.
 async function contrastTargets(page) {
   const labels = await page.evaluate(`(() => {
     const seen = new Set();
@@ -321,10 +317,10 @@ const cases = [
       const page = await openPage(browser, { prefersDark: true });
       try {
         await page.evaluate(`[...document.querySelectorAll("button")].find((b) => b.textContent.trim() === "Add task").click()`);
-        await page.waitFor(`document.querySelector("dialog")?.open`, 2000);
-        const surface = (await page.colors("dialog")).bg;
-        const heading = await page.colors("dialog h2");
-        const field = await page.colors("dialog input");
+        await page.waitFor(`document.querySelector(${JSON.stringify(ADD_DIALOG)})?.open`, 2000);
+        const surface = (await page.colors(ADD_DIALOG)).bg;
+        const heading = await page.colors(`${ADD_DIALOG} h2`);
+        const field = await page.colors(`${ADD_DIALOG} input`);
         await page.screenshot("dark-dialog.png");
         const headingRatio = contrast(heading.fg, heading.bg);
         const fieldRatio = contrast(field.fg, field.bg);

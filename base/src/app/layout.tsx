@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    // themeScript sets data-theme before React hydrates, so the attribute differs from the server render.
     <html lang="en" className={`${inter.variable} ${montserrat.variable} antialiased`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
