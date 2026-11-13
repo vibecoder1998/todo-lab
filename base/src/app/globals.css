@@ -45,6 +45,10 @@
   --color-track: var(--track);
 }
 
+@theme {
+  --breakpoint-desk: 90rem;
+}
+
 @layer base {
   body {
     line-height: normal;

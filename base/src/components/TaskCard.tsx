@@ -39,7 +39,7 @@ export default function TaskCard({ task, now, onAdvance }: Props) {
         done ? "min-h-[134px] py-[9px]" : "min-h-[166px] py-[12px]"
       }`}
     >
-      <div className={`flex gap-[13px] ${done ? "pr-[98px]" : "pr-[115px]"}`}>
+      <div className={`flex gap-[13px] ${done ? "pr-[72px] sm:pr-[98px]" : "pr-[80px] sm:pr-[115px]"}`}>
         <button
           type="button"
           onClick={onAdvance}
@@ -52,8 +52,8 @@ export default function TaskCard({ task, now, onAdvance }: Props) {
           />
         </button>
         <div className="min-w-0">
-          <h3 className="text-[16px] font-semibold">{task.title}</h3>
-          <p className={`text-[14px] text-subtle ${done ? "mt-[13px] line-clamp-2" : "mt-[10px] line-clamp-4"}`}>
+          <h3 className="text-[16px] font-semibold wrap-anywhere">{task.title}</h3>
+          <p className={`text-[14px] text-subtle wrap-anywhere ${done ? "mt-[13px] line-clamp-2" : "mt-[10px] line-clamp-4"}`}>
             {task.description}
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function TaskCard({ task, now, onAdvance }: Props) {
           <p className="mt-[11px] font-medium text-subtle">Completed {timeAgo(task.completedAt ?? task.createdAt, now)}.</p>
         </div>
       ) : (
-        <div className="mt-auto flex pl-[27px] pt-[8px] text-[10px] whitespace-nowrap">
+        <div className="mt-auto flex flex-wrap gap-y-1 pt-[8px] pl-[27px] text-[10px] whitespace-nowrap">
           <span className="w-[98px]">
             Priority: <span style={{ color: PRIORITY_COLOR[task.priority] }}>{task.priority}</span>
           </span>
@@ -80,8 +80,8 @@ export default function TaskCard({ task, now, onAdvance }: Props) {
           alt=""
           width={88}
           height={88}
-          className={`absolute top-1/2 size-[88px] -translate-y-1/2 rounded-[14px] object-cover ${
-            done ? "right-[13px]" : "right-[30px]"
+          className={`absolute top-1/2 size-[56px] -translate-y-1/2 rounded-[14px] object-cover sm:size-[88px] ${
+            done ? "right-[13px]" : "right-[13px] sm:right-[30px]"
           }`}
         />
       )}

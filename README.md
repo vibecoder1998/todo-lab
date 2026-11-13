@@ -42,6 +42,7 @@ Start a fresh Claude session for every folder, so nothing carries over.
 | `SCORECARD.md` | What to look for in each part |
 | `tools/build-parts.py` | Rebuilds every part folder from `base/` |
 | `base-proof/` | Screenshots that prove the base app matches the design and works |
+| `responsive-proof/` | Phone and desktop layout tests for the base app, with a screenshot per case. Kept outside `base/` so the part folders don't inherit them |
 | `DECISIONS.md` | Why the lab is built the way it is |
 
 ## Run the base app

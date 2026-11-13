@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { addTask, loadTasks, NEXT_STATUS, setStatus, statusStats, type Status, type Task } from "@/lib/tasks";
 import AddTask from "./AddTask";
-import Sidebar from "./Sidebar";
+import Sidebar, { MenuDrawer } from "./Sidebar";
 import StatusDonut from "./StatusDonut";
 import TaskCard, { STATUS_COLOR } from "./TaskCard";
 import ThemeToggle from "./ThemeToggle";
@@ -31,14 +31,15 @@ export default function Dashboard() {
   const advance = (task: Task) => setTasks(setStatus(task.id, NEXT_STATUS[task.status]));
 
   return (
-    <div className="flex h-dvh flex-col overflow-hidden">
-      <header className="flex h-[100px] shrink-0 items-start bg-header pt-[38px] pr-[76px] pl-[72px] shadow-[0_4px_12px_rgba(0,0,0,0.07)]">
-        <h1 className="-mt-[1px] w-[319px] text-[32px] font-semibold">
+    <div className="flex min-h-dvh flex-col lg:h-dvh lg:overflow-y-auto">
+      <header className="flex shrink-0 flex-wrap items-center gap-3 bg-header px-4 py-3 shadow-[0_4px_12px_rgba(0,0,0,0.07)] lg:h-[100px] lg:flex-nowrap lg:items-start lg:gap-0 lg:px-10 lg:pt-[38px] lg:pb-0 desk:pr-[76px] desk:pl-[72px]">
+        <MenuDrawer />
+        <h1 className="text-[24px] font-semibold lg:-mt-[1px] lg:mr-10 lg:ml-4 lg:text-[32px] xl:ml-0 desk:mr-0 desk:w-[319px]">
           <span className="text-brand">Dash</span>board
         </h1>
         <div
           role="search"
-          className="relative flex h-[36px] w-[695px] items-center rounded-[8px] bg-page shadow-[-4px_17px_18px_rgba(0,0,0,0.03),-1px_4px_10px_rgba(0,0,0,0.04)]"
+          className="relative order-last flex h-[36px] w-full items-center rounded-[8px] lg:order-none lg:mr-4 lg:max-w-[695px] lg:min-w-0 lg:flex-1 bg-page shadow-[-4px_17px_18px_rgba(0,0,0,0.03),-1px_4px_10px_rgba(0,0,0,0.04)]"
         >
           <input
             type="search"
@@ -50,24 +51,24 @@ export default function Dashboard() {
           />
           <Image src="/icons/search.svg" alt="" width={36} height={36} className="absolute right-0" />
         </div>
-        <ThemeToggle className="mr-[24px] ml-auto" />
+        <ThemeToggle className="ml-auto lg:mr-[24px]" />
         <p className="w-[81px] font-medium">
           <span className="block text-[15px]">{now.toLocaleDateString("en-GB", { weekday: "long" })}</span>
           <span className="block text-[14px] text-[#3abeff]">{now.toLocaleDateString("en-GB")}</span>
         </p>
       </header>
 
-      <div className="flex min-h-0 flex-1">
-        <Sidebar />
-        <main className="flex min-h-0 flex-1 flex-col px-[76px] pt-[57px] pb-[31px]">
-          <h2 className="flex items-center gap-[8px] text-[36px] leading-[34px] font-medium">
+      <div className="flex flex-1 lg:min-h-0">
+        <Sidebar className="mt-[56px] hidden w-[250px] rounded-r-[8px] xl:flex desk:w-[330px]" />
+        <main className="flex min-w-0 flex-1 flex-col px-4 py-6 lg:min-h-0 lg:px-10 lg:pt-[57px] lg:pb-[31px] desk:px-[76px]">
+          <h2 className="flex items-center gap-[8px] text-[24px] font-medium lg:text-[36px] lg:leading-[34px]">
             Welcome back, Sundar
-            <Image src="/icons/hand-wave.svg" alt="" width={42.4228} height={41} />
+            <Image src="/icons/hand-wave.svg" alt="" width={42.4228} height={41} className="w-[28px] lg:w-auto" />
           </h2>
 
-          <div className="mt-[34px] flex max-h-[761px] min-h-0 flex-1 gap-[16px] border border-muted/60 pt-[21px] pr-[26px] pb-[19px] pl-[25px] shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-            <section aria-labelledby="todo-title" className={`${CARD} flex w-[466px] flex-col`}>
-              <div className="flex items-start justify-between pt-[20px] pr-[41px] pl-[23px]">
+          <div className="mt-6 flex flex-col gap-4 border border-muted/60 p-3 shadow-[0_4px_4px_rgba(0,0,0,0.25)] lg:mt-[34px] lg:max-h-[761px] lg:min-h-[360px] lg:flex-1 lg:flex-row lg:pt-[21px] lg:pr-[26px] lg:pb-[19px] lg:pl-[25px]">
+            <section aria-labelledby="todo-title" className={`${CARD} flex min-w-0 flex-col lg:max-w-[466px] lg:flex-[466_1_0%]`}>
+              <div className="flex items-start justify-between px-4 pt-[20px] sm:pr-[41px] sm:pl-[23px]">
                 <div>
                   <h2 id="todo-title" className="flex items-start gap-[4px] text-[15px] font-medium text-brand">
                     <Image src="/icons/todo.svg" alt="" width={28.6844} height={32.1713} />
@@ -83,30 +84,30 @@ export default function Dashboard() {
                   <AddTask onAdd={(input) => setTasks(addTask(input))} />
                 </div>
               </div>
-              <ul className="mt-[18px] flex-1 overflow-y-auto pb-[20px]">
+              <ul className="mt-[18px] pb-[20px] lg:flex-1 lg:overflow-y-auto">
                 {todo.map((task, i) => (
                   <li
                     key={task.id}
                     className={
                       i > 0 && day(task.createdAt) !== day(todo[i - 1].createdAt)
-                        ? "mt-[35px] border-t border-muted px-[33px] pt-[35px]"
-                        : `px-[33px] ${i > 0 ? "mt-[10px]" : ""}`
+                        ? "mt-[35px] border-t border-muted px-3 pt-[35px] sm:px-[33px]"
+                        : `px-3 sm:px-[33px] ${i > 0 ? "mt-[10px]" : ""}`
                     }
                   >
                     <TaskCard task={task} now={now} onAdvance={() => advance(task)} />
                   </li>
                 ))}
-                {todo.length === 0 && <li className="px-[33px] text-[14px] text-subtle">No tasks to do.</li>}
+                {todo.length === 0 && <li className="px-3 text-[14px] text-subtle sm:px-[33px]">No tasks to do.</li>}
               </ul>
             </section>
 
-            <div className="flex w-[423px] flex-col gap-[17px] pt-[3px]">
-              <section aria-labelledby="status-title" className={`${CARD} h-[263px] px-[25px] pt-[24px]`}>
+            <div className="flex min-w-0 flex-col gap-4 lg:max-w-[423px] lg:flex-[423_1_0%] lg:gap-[17px] lg:pt-[3px]">
+              <section aria-labelledby="status-title" className={`${CARD} px-4 pt-[24px] pb-6 sm:px-[25px] lg:h-[263px] lg:pb-0`}>
                 <h2 id="status-title" className="flex items-center gap-[9px] text-[15px] font-medium text-brand">
                   <Image src="/icons/task-status.svg" alt="" width={23} height={22.7} />
                   Task Status
                 </h2>
-                <div className="mt-[35px] -ml-[4px] flex gap-[40px]">
+                <div className="mt-6 grid grid-cols-3 justify-items-center gap-2 sm:mt-[35px] sm:-ml-[4px] sm:flex sm:gap-[40px]">
                   {DONUTS.map((status) => (
                     <StatusDonut key={status} label={status} percent={stats[status]} color={STATUS_COLOR[status]} />
                   ))}
@@ -121,7 +122,7 @@ export default function Dashboard() {
                   <Image src="/icons/completed-task.svg" alt="" width={21} height={24} />
                   Completed Task
                 </h2>
-                <ul className="mt-[23px] flex flex-1 flex-col gap-[10px] overflow-y-auto px-[42px] pb-[20px]">
+                <ul className="mt-[23px] flex flex-col gap-[10px] px-3 pb-[20px] sm:px-[42px] lg:flex-1 lg:overflow-y-auto">
                   {completed.map((task) => (
                     <li key={task.id}>
                       <TaskCard task={task} now={now} onAdvance={() => advance(task)} />

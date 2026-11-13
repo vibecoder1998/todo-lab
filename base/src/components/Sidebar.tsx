@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 const NAV = [
   { label: "Dashboard", icon: "/icons/nav-dashboard.svg", width: 24, height: 24, current: true },
@@ -11,9 +14,9 @@ const NAV = [
 
 const ITEM = "flex h-[59px] items-center gap-[16px] rounded-[14px] px-[16px] text-[16px] font-medium";
 
-export default function Sidebar() {
+export default function Sidebar({ className }: { className: string }) {
   return (
-    <aside className="mt-[56px] flex min-h-0 w-[330px] shrink-0 flex-col rounded-r-[8px] bg-brand px-[21px] text-white shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
+    <aside className={`min-h-0 shrink-0 flex-col bg-brand px-[21px] text-white shadow-[0_4px_12px_rgba(0,0,0,0.08)] ${className}`}>
       <div className="-mt-[44px] mr-[26px] flex flex-col items-center">
         <Image src="/images/profile.png" alt="" width={86} height={86} className="rounded-full" priority />
         <p className="mt-[13px] text-[16px] font-semibold">Sundar Gurung</p>
@@ -44,5 +47,53 @@ export default function Sidebar() {
         Logout
       </a>
     </aside>
+  );
+}
+
+export function MenuDrawer() {
+  const dialog = useRef<HTMLDialogElement>(null);
+
+  // A drawer left open while the window grows past xl would keep the page inert behind it.
+  useEffect(() => {
+    const desktop = matchMedia("(min-width: 80rem)");
+    const close = () => desktop.matches && dialog.current?.close();
+    desktop.addEventListener("change", close);
+    return () => desktop.removeEventListener("change", close);
+  }, []);
+
+  return (
+    <>
+      <button
+        type="button"
+        aria-label="Open menu"
+        onClick={() => dialog.current?.showModal()}
+        className="grid size-[36px] shrink-0 cursor-pointer place-items-center rounded-[8px] bg-brand text-white xl:hidden"
+      >
+        <svg viewBox="0 0 24 24" className="size-[20px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <dialog
+        ref={dialog}
+        aria-label="Menu"
+        onClick={(event) => {
+          const target = event.target as HTMLElement;
+          if (target === event.currentTarget || target.closest("a")) dialog.current?.close();
+        }}
+        className="m-0 h-dvh max-h-none w-[min(330px,85vw)] bg-transparent backdrop:bg-black/40"
+      >
+        <Sidebar className="flex h-full pt-[56px]" />
+        <button
+          type="button"
+          aria-label="Close menu"
+          onClick={() => dialog.current?.close()}
+          className="absolute top-3 right-3 grid size-[36px] cursor-pointer place-items-center text-white"
+        >
+          <svg viewBox="0 0 24 24" className="size-[20px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </dialog>
+    </>
   );
 }
