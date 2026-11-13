@@ -7,6 +7,7 @@ import AddTask from "./AddTask";
 import Sidebar from "./Sidebar";
 import StatusDonut from "./StatusDonut";
 import TaskCard, { STATUS_COLOR } from "./TaskCard";
+import ThemeToggle from "./ThemeToggle";
 
 const DONUTS: Status[] = ["Completed", "In Progress", "Not Started"];
 const CARD =
@@ -49,7 +50,8 @@ export default function Dashboard() {
           />
           <Image src="/icons/search.svg" alt="" width={36} height={36} className="absolute right-0" />
         </div>
-        <p className="ml-auto w-[81px] font-medium">
+        <ThemeToggle className="mr-[24px] ml-auto" />
+        <p className="w-[81px] font-medium">
           <span className="block text-[15px]">{now.toLocaleDateString("en-GB", { weekday: "long" })}</span>
           <span className="block text-[14px] text-[#3abeff]">{now.toLocaleDateString("en-GB")}</span>
         </p>
